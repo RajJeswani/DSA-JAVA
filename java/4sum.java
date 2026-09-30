@@ -3,78 +3,78 @@
 // Language: java
 // Link: https://leetcode.com/problems/4sum/
 // Synced by: LinkCode
-// Date: 9/29/2026, 10:48:03 PM
+// Date: 10/1/2026, 1:26:23 AM
 // ======================================
 
 
 import java.util.*;
 
-class Solution {
-    public List<List<Integer>> fourSum(int[] nums, int target) {
-        List<List<Integer>> result = new ArrayList<>();
+public class Solution 
+{
+    public List<List<Integer>> fourSum(int[] nums, int target) 
+    {
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
         int n = nums.length;
 
-        Arrays.sort(nums);
-
-        for (int i = 0; i < n - 3; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) {
+        for(int i = 0; i < n - 3; i++)
+        {
+            if(i > 0 && nums[i] == nums[i - 1])
                 continue;
-            }
 
-            if ((long) nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target) {
-                break;
-            }
-
-            if ((long) nums[i] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target) {
-                continue;
-            }
-
-            for (int j = i + 1; j < n - 2; j++) {
-                if (j > i + 1 && nums[j] == nums[j - 1]) {
+            for(int j = i + 1; j < n - 2; j++)
+            {
+                if(j > i + 1 && nums[j] == nums[j - 1])
                     continue;
-                }
-
-                if ((long) nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target) {
-                    break;
-                }
-
-                if ((long) nums[i] + nums[j] + nums[n - 1] + nums[n - 2] < target) {
-                    continue;
-                }
 
                 int left = j + 1;
                 int right = n - 1;
 
-                while (left < right) {
+                while(left < right)
+                {
                     long sum = (long) nums[i] + nums[j] + nums[left] + nums[right];
 
-                    if (sum == target) {
-                        result.add(Arrays.asList(
-                            nums[i],
-                            nums[j],
-                            nums[left],
-                            nums[right]
+                    if(sum == target)
+                    {
+                        ans.add(new ArrayList<>(
+                            Arrays.asList(
+                                nums[i], nums[j], nums[left], nums[right]
+                            )
                         ));
 
-                        while (left < right && nums[left] == nums[left + 1]) {
+                        while(left < right && nums[left] == nums[left + 1])
                             left++;
-                        }
 
-                        while (left < right && nums[right] == nums[right - 1]) {
+                        while(left < right && nums[right] == nums[right - 1])
                             right--;
-                        }
 
                         left++;
                         right--;
-                    } else if (sum < target) {
+                    }
+                    else if(sum < target)
+                    {
                         left++;
-                    } else {
+                    }
+                    else
+                    {
                         right--;
                     }
                 }
             }
         }
 
-        return result;
+        return ans;
+    }
+
+    public static void main(String[] args)
+    {
+        Solution obj = new Solution();
+
+        int[] nums = {1, 0, -1, 0, -2, 2};
+        int target = 0;
+
+        List<List<Integer>> result = obj.fourSum(nums, target);
+
+        System.out.println(result);
     }
 }
