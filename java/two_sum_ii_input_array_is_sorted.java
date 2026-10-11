@@ -3,30 +3,34 @@
 // Language: java
 // Link: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 // Synced by: LinkCode
-// Date: 9/18/2026, 1:17:23 PM
+// Date: 10/11/2026, 12:41:23 PM
 // ======================================
 
 
-class Solution {
+class Solution 
+{
     public int[] twoSum(int[] numbers, int target) 
     {
-      int left=0;
-      int right=numbers.length-1;
-      while(left<right)
-      {
-        if(numbers[left]+numbers[right]==target)
+        int n=numbers.length;
+        int left=0;
+        int right=n-1;
+        while(left<right)
         {
-          return new int[] {left+1,right+1};
+            if(numbers[left]+numbers[right]==target)
+            {
+                return new int[]{left+1,right+1};
+            }
+            else if(numbers[left]+numbers[right]<target)
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+            
         }
-        else if(numbers[left]+numbers[right]<target)
-        {
-          left++;
-        }
-        else if(numbers[left]+numbers[right]>target)
-        {
-          right--;
-        } 
-      }
-      return new int[]{-1,-1};
+        return new int[]{-1,-1};
     }
+
 }
