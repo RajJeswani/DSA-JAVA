@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/move-zeroes/
 // Synced by: LinkCode
-// Date: 10/15/2026, 10:10:02 PM
+// Date: 10/15/2026, 10:30:43 PM
 // ======================================
 
 
@@ -11,22 +11,18 @@ class Solution
 {
     public void moveZeroes(int[] nums) 
     {
-        //brute force approach
-        //self try
-         int n=nums.length;   
-      int[]another=new int[n];
-      int j=0;
-      for(int i=0;i<n;i++)
-      {
-        if(nums[i]!=0)
+       int left=0;
+       int n =nums.length;
+       for(int right=0;right<n;right++)
+       {
+        if(nums[right]!=0)
         {
-          another[j]=nums[i];
-          j++;
+            int temp=nums[left];
+            nums[left]=nums[right];
+            nums[right]=temp;
+            left++;
         }
-      }
-      for (int i = 0; i < n; i++) {
-            nums[i] = another[i];
-        }
-      System.out.println(Arrays.toString(another));    
+       }
+      System.out.println(Arrays.toString(nums));    
     }
 }
