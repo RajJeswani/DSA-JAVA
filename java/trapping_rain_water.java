@@ -3,52 +3,38 @@
 // Language: java
 // Link: https://leetcode.com/problems/trapping-rain-water/
 // Synced by: LinkCode
-// Date: 10/16/2026, 12:35:05 AM
+// Date: 10/16/2026, 1:33:03 PM
 // ======================================
 
 
-class Solution 
-{
+class Solution
+ {
     public int trap(int[] height) 
     {
-        int n=height.length;
-        int[] left=new int[n];
-        int[] right=new int[n];
-        left[0]=height[0];
-        for(int i=1;i<n;i++)
+        //TWO POINTER APPROACH ANOTHER APPROACH AUXILLARY ARRAYS
+          int n=height.length;
+          int left=0;
+        int right=n-1;
+        int leftmax=height[left];
+        int water=0;
+        int rightmax=height[right];
+        while(left<right)
         {
-            if(left[i-1]<height[i])
+            if(leftmax<rightmax)
             {
-                left[i]=height[i];
+                  left++;
+                leftmax=Math.max(leftmax,height[left]);
+                water+=leftmax-height[left];
+              
             }
             else
             {
-                left[i]=left[i-1];
-            }
-        }        
-        
-
-        right[n-1]=height[n-1];
-        for(int i=n-2;i>=0;i--)
-        {
-            if(right[i+1]<height[i])
-            {
-                right[i]=height[i];
-
-            }
-            else
-            {
-                right[i]=right[i+1];
+                right--;
+                rightmax=Math.max(rightmax,height[right]);
+                water+=rightmax-height[right];
+                
             }
         }
-      
-        int trappedwater=0;
-        for(int i=0;i<n;i++)
-        {
-            int water=Math.min(left[i],right[i])-height[i];
-            trappedwater+=water;
-
-        }
-        return trappedwater;
+        return water;
     }
 }
