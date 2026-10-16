@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 // Synced by: LinkCode
-// Date: 10/16/2026, 8:49:30 AM
+// Date: 10/16/2026, 10:07:44 AM
 // ======================================
 
 
@@ -11,27 +11,24 @@ class Solution
 {
     public int removeDuplicates(int[] nums) 
     {
-        //brute force approach
-        int j=0;
-        int n=nums.length;
-        int[] another=new int[n];
-        for(int i=0;i<n;i++)
+        int left=0;
+        int right=1;
+        while(right<nums.length)
         {
-            if(i>0 && nums[i]==nums[i-1])
+            if(nums[left]==nums[right])
             {
-                continue;
+                right++;
             }
             else
             {
-                another[j]=nums[i];
-                j++;
+                left++;
+                int temp=nums[right];
+                nums[right]=nums[left];
+                nums[left]=temp;
+                right++;
             }
         }
-        System.out.println(Arrays.toString(another));
-        for(int k=0;k<another.length;k++)
-        {
-            nums[k]=another[k];
-        }
-        return j;
+        System.out.println(Arrays.toString(nums));
+       return left+1;
     }
 }
