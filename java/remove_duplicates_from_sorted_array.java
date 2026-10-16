@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 // Synced by: LinkCode
-// Date: 10/16/2026, 10:07:44 AM
+// Date: 10/16/2026, 10:09:50 AM
 // ======================================
 
 
@@ -28,7 +28,7 @@ class Solution
                 right++;
             }
         }
-        System.out.println(Arrays.toString(nums));
+        
        return left+1;
     }
 }
