@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/intersection-of-two-arrays/
 // Synced by: LinkCode
-// Date: 10/18/2026, 2:52:04 PM
+// Date: 10/18/2026, 2:58:51 PM
 // ======================================
 
 
@@ -18,17 +18,18 @@ class Solution
         int right=0;
         while(left<nums1.length && right<nums2.length)
         {
-            while(left>0  && left<nums1.length && nums1[left]==nums1[left-1] )
-            {
-                left++;
-            }
-            while(right>0  && right<nums2.length && nums2[right]==nums2[right-1]  )
-            {
-                right++;
-            }
-            if (left >= nums1.length || right >= nums2.length) {
-    break;
-}
+            // while(left>0  && left<nums1.length && nums1[left]==nums1[left-1] )
+            // {
+            //     left++;
+            // }
+            // while(right>0  && right<nums2.length && nums2[right]==nums2[right-1]  )
+            // {
+            //     right++;
+            // }
+            // if (left >= nums1.length || right >= nums2.length) 
+            // {
+            //          break;
+            //     }
             if(nums1[left]<nums2[right])
             {
                     left++;
@@ -39,7 +40,14 @@ class Solution
             }
             else if(nums1[left]==nums2[right])
             {
-                list.add(nums1[left]);
+                //uncomment the above to prevent the duplication 
+                //another method below to prevent duplication
+                if (list.isEmpty() || list.get(list.size() - 1) != nums1[left]) 
+                {
+                    list.add(nums1[left]);
+                }
+
+
                 left++;
                 right++;
             }
