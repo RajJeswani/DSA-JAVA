@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/3sum-closest/
 // Synced by: LinkCode
-// Date: 10/19/2026, 10:10:18 PM
+// Date: 10/19/2026, 10:13:13 PM
 // ======================================
 
 
@@ -12,10 +12,8 @@ import java.util.Arrays;
 
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
-        if (nums == null || nums.length < 3) {
-            throw new IllegalArgumentException("Array must contain at least 3 elements");
-        }
-
+        
+        // TC:O(n^2) SC:O(logn)
         Arrays.sort(nums);
         int n = nums.length;
         int closestSum = nums[0] + nums[1] + nums[2];
