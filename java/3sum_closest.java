@@ -3,57 +3,45 @@
 // Language: java
 // Link: https://leetcode.com/problems/3sum-closest/
 // Synced by: LinkCode
-// Date: 10/19/2026, 10:01:24 PM
+// Date: 10/19/2026, 10:10:18 PM
 // ======================================
 
 
 
+import java.util.Arrays;
+
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
+        if (nums == null || nums.length < 3) {
+            throw new IllegalArgumentException("Array must contain at least 3 elements");
+        }
+
         Arrays.sort(nums);
-        ArrayList<Integer> list = new ArrayList<>();
         int n = nums.length;
-        int sum = 0;
+        int closestSum = nums[0] + nums[1] + nums[2];
 
         for (int i = 0; i < n - 2; i++) {
             int left = i + 1;
             int right = n - 1;
 
             while (left < right) {
-                sum = nums[left] + nums[right] + nums[i];
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (Math.abs((long) target - sum) <
+                    Math.abs((long) target - closestSum)) {
+                    closestSum = sum;
+                }
 
                 if (sum < target) {
-                    list.add(sum);
-                    // list = Arrays.asList(nums[left], nums[right], nums[i]);
                     left++;
-                } 
-                else if (sum > target) {
-                    list.add(sum);
-                    // list = Arrays.asList(nums[left], nums[right], nums[i]);
+                } else if (sum > target) {
                     right--;
-                } 
-                else {
+                } else {
                     return sum;
                 }
             }
         }
 
-        int closevalue = Integer.MAX_VALUE;
-
-        for (int k = 0; k < list.size(); k++) {
-            closevalue = Math.min(
-                Math.abs(target - list.get(k)),
-                closevalue
-            );
-        }
-
-        for (int j = 0; j < list.size(); j++) {
-            if (Math.abs(target - list.get(j)) == closevalue) {
-                return list.get(j);
-            }
-           
-        }
-
-        return sum;
+        return closestSum;
     }
 }
