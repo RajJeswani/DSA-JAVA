@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/move-zeroes/
 // Synced by: LinkCode
-// Date: 10/20/2026, 8:41:45 AM
+// Date: 10/20/2026, 8:46:12 AM
 // ======================================
 
 
@@ -21,12 +21,9 @@ class Solution
             nums[right]=nums[left];
             nums[left]=temp;
             left++;
-            right++;
+           
         }   
-        else
-        {
-            right++;
-        }    
+        right++;
         }
          System.out.println(Arrays.toString(nums));
     }
