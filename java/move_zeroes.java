@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/move-zeroes/
 // Synced by: LinkCode
-// Date: 10/20/2026, 8:46:12 AM
+// Date: 10/20/2026, 8:48:45 AM
 // ======================================
 
 
@@ -12,7 +12,7 @@ class Solution
     public void moveZeroes(int[] nums) 
     {
         int left=0;
-        int right=1;
+        int right=0;
         while(right<nums.length)
         {
             if(nums[right]!=0)
