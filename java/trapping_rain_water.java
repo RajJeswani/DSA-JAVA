@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/trapping-rain-water/
 // Synced by: LinkCode
-// Date: 10/20/2026, 9:06:59 PM
+// Date: 10/21/2026, 8:27:11 PM
 // ======================================
 
 
@@ -11,14 +11,14 @@ class Solution
 {
     public int trap(int[] height) 
     {
-        int n=height.length;
-        int left=0;
-        int water=0;
-        int right=n-1;
-        int leftmax=height[left];
-        int rightmax=height[right];
-        while(left<right)
-        {
+         int n=height.length;
+         int left=0;
+         int right=n-1;
+         int leftmax=height[left];
+         int water=0;
+         int rightmax=height[right];
+         while(left<right)
+         {
             if(leftmax<rightmax)
             {
                 left++;
@@ -30,9 +30,8 @@ class Solution
                 right--;
                 rightmax=Math.max(rightmax,height[right]);
                 water+=rightmax-height[right];
-
             }
-        }
-        return water;    
+         }
+         return water;
     }
 }
