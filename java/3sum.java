@@ -3,7 +3,7 @@
 // Language: java
 // Link: https://leetcode.com/problems/3sum/
 // Synced by: LinkCode
-// Date: 11/12/2026, 10:04:00 AM
+// Date: 11/12/2026, 10:06:55 AM
 // ======================================
 
 
@@ -16,7 +16,7 @@ class Solution {
         int left;
         List <Integer> sidelist=new ArrayList<>();
         List<List<Integer>> mainlist=new ArrayList<>(); 
-        for(int i=0;i<n-1;i++)
+        for(int i=0;i<n-2;i++)
         {
             right=n-1;
             left=i+1;
