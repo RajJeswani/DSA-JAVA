@@ -3,32 +3,30 @@
 // Language: java
 // Link: https://leetcode.com/problems/intersection-of-two-arrays/
 // Synced by: LinkCode
-// Date: 11/15/2026, 10:02:37 PM
+// Date: 11/15/2026, 10:36:42 PM
 // ======================================
 
 
 class Solution {
-    public int[] intersection(int[] nums1, int[] nums2) 
+    public int[] intersection(int[] nums1, int[] nums2)
     {
-        //retainAll Method
-        Set<Integer> s1=new HashSet<>();
-        Set<Integer> s2=new HashSet<>();
-        
-        for(int n: nums1)
-        {   
-            s1.add(n);
+        // Using Dictionary 
+        Map<Integer,Integer> seen=new HashMap<>();
+        List<Integer> result=new ArrayList<>();
+
+        for(int x:nums1)
+        {
+            seen.put(x,1);
         }    
-        for(int n: nums2)
+
+        for(int x:nums2)
         {
-            s2.add(n);
+            if(seen.containsKey(x) && seen.get(x)==1)
+            {
+                result.add(x);
+                seen.put(x,0);
+            }
         }
-        s1.retainAll(s2);
-        int idx=0;
-        int[] output=new int[s1.size()];
-        for(int n:s1)
-        {
-            output[idx++]=n;
-        }
-        return output;
+        return result.stream().mapToInt(i->i).toArray();
     }
 }
