@@ -3,51 +3,32 @@
 // Language: java
 // Link: https://leetcode.com/problems/intersection-of-two-arrays/
 // Synced by: LinkCode
-// Date: 11/15/2026, 9:56:26 PM
+// Date: 11/15/2026, 10:02:37 PM
 // ======================================
 
 
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) 
     {
-        // Total 3 Approaches : 
-        //1.Sorting And Two Pointer Approach 
-        // TC: nlogn+mlogm
+        //retainAll Method
+        Set<Integer> s1=new HashSet<>();
+        Set<Integer> s2=new HashSet<>();
         
-        //2.retainAll Function In Collections
-        //3.One Dictionary
-
-        HashSet<Integer> list=new HashSet<>();
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        int l=0,r=0;
-        while(l<nums1.length && r<nums2.length)
+        for(int n: nums1)
+        {   
+            s1.add(n);
+        }    
+        for(int n: nums2)
         {
-            if(nums1[l]<nums2[r])
-            {
-                l++;
-            }
-            else if(nums1[l]>nums2[r])
-            {
-                r++;
-            }
-            else
-            {
-               
-               list.add(nums1[l]); 
-                l++;
-                r++;
-               
-            }
-        } 
-        int n=list.size();
-        int[] another=new int[n];
-        int i=0;
-        for(int num:list)
-        {
-            another[i]=num;
-            i++;
+            s2.add(n);
         }
-        return another;
+        s1.retainAll(s2);
+        int idx=0;
+        int[] output=new int[s1.size()];
+        for(int n:s1)
+        {
+            output[idx++]=n;
+        }
+        return output;
     }
 }
