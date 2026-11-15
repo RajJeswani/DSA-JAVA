@@ -3,61 +3,51 @@
 // Language: java
 // Link: https://leetcode.com/problems/intersection-of-two-arrays/
 // Synced by: LinkCode
-// Date: 10/18/2026, 2:58:51 PM
+// Date: 11/15/2026, 9:56:26 PM
 // ======================================
 
 
-class Solution
- {
+class Solution {
     public int[] intersection(int[] nums1, int[] nums2) 
     {
+        // Total 3 Approaches : 
+        //1.Sorting And Two Pointer Approach 
+        // TC: nlogn+mlogm
+        
+        //2.retainAll Function In Collections
+        //3.One Dictionary
+
+        HashSet<Integer> list=new HashSet<>();
         Arrays.sort(nums1);
         Arrays.sort(nums2);
-        ArrayList<Integer> list = new ArrayList<>();
-        int left=0;
-        int right=0;
-        while(left<nums1.length && right<nums2.length)
+        int l=0,r=0;
+        while(l<nums1.length && r<nums2.length)
         {
-            // while(left>0  && left<nums1.length && nums1[left]==nums1[left-1] )
-            // {
-            //     left++;
-            // }
-            // while(right>0  && right<nums2.length && nums2[right]==nums2[right-1]  )
-            // {
-            //     right++;
-            // }
-            // if (left >= nums1.length || right >= nums2.length) 
-            // {
-            //          break;
-            //     }
-            if(nums1[left]<nums2[right])
+            if(nums1[l]<nums2[r])
             {
-                    left++;
+                l++;
             }
-            else if(nums1[left]>nums2[right])
+            else if(nums1[l]>nums2[r])
             {
-                right++;
+                r++;
             }
-            else if(nums1[left]==nums2[right])
+            else
             {
-                //uncomment the above to prevent the duplication 
-                //another method below to prevent duplication
-                if (list.isEmpty() || list.get(list.size() - 1) != nums1[left]) 
-                {
-                    list.add(nums1[left]);
-                }
-
-
-                left++;
-                right++;
+               
+               list.add(nums1[l]); 
+                l++;
+                r++;
+               
             }
-        }
-        int[] result=new int[list.size()];
-        for(int i=0;i<list.size();i++)
+        } 
+        int n=list.size();
+        int[] another=new int[n];
+        int i=0;
+        for(int num:list)
         {
-            result[i]=list.get(i);
+            another[i]=num;
+            i++;
         }
-        return result;
+        return another;
     }
-
 }
