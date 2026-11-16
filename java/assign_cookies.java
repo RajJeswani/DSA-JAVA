@@ -3,35 +3,30 @@
 // Language: java
 // Link: https://leetcode.com/problems/assign-cookies/
 // Synced by: LinkCode
-// Date: 10/23/2026, 9:50:08 PM
+// Date: 11/16/2026, 11:55:07 AM
 // ======================================
 
 
-class Solution 
-{
+class Solution {
     public int findContentChildren(int[] g, int[] s) 
     {
-        int contentchild=0;
-         int len_g=g.length;
-         int len_s=s.length;
-         Arrays.sort(g);
-         Arrays.sort(s);
-         int left=0;
-         int right=0;
-         while(left<len_g && right<len_s)
-         {
-            if(s[right]<g[left])
+        int g_len=g.length;
+        int s_len=s.length;
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int l=0;
+        int r=0;
+        int cookies=0;
+        while(l<g_len && r<s_len)
+        {
+            if(s[r]>=g[l])
             {
-               right++; 
-            }
-            else
-            {
-                    contentchild++;
-                    left++;
-                    right++;
-            }
+                cookies++;
+                l++;
+            }   
+            r++;
 
-         }
-         return contentchild;       
+        } 
+        return cookies;  
     }
 }
