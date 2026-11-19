@@ -3,32 +3,24 @@
 // Language: java
 // Link: https://leetcode.com/problems/move-zeroes/
 // Synced by: LinkCode
-// Date: 11/13/2026, 8:36:59 PM
+// Date: 11/20/2026, 12:52:30 AM
 // ======================================
 
 
-class Solution 
-{
+class Solution {
     public void moveZeroes(int[] nums) 
     {
-        int left=0;
-        int right=left+1;
-        int n=nums.length;
-        while(right<n)
+         int left=0;
+        for(int right=0; right<nums.length;right++)
         {
-            if(nums[left]!=0)
+            if(nums[left]!=0) left++;
+            if(nums[right]!=0 && nums[left]==0)
             {
-                left++;
+            int temp=nums[left];
+            nums[left]=nums[right];
+            nums[right]=temp;
+            left++;
             }
-           if(nums[right]!=0 )
-           {
-            int temp;
-            temp=nums[right];
-            nums[right]=nums[left];
-            nums[left]=temp;
-           }
-            right++;
-
-        }           
+        }    
     }
 }
