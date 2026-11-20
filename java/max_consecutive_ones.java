@@ -3,28 +3,27 @@
 // Language: java
 // Link: https://leetcode.com/problems/max-consecutive-ones/
 // Synced by: LinkCode
-// Date: 11/3/2026, 11:38:32 PM
+// Date: 11/20/2026, 9:37:57 PM
 // ======================================
 
 
 class Solution {
-    public int findMaxConsecutiveOnes(int[] nums) 
-    {
-        int n=nums.length;
+    public int findMaxConsecutiveOnes(int[] nums) {
+        
         int count=0;
         int maxcount=0;
-        for(int i=0;i<n;i++)
+        for(int right=0;right<nums.length;right++)
         {
-            if(nums[i]==1)
+            if(nums[right]!=0)
             {
                 count++;
-                
             }
             else
             {
+               
                 count=0;
             }
-        maxcount=Math.max(count,maxcount);
+             maxcount=Math.max(count,maxcount);
         }
         return maxcount;
     }
