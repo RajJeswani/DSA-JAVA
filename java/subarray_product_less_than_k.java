@@ -3,38 +3,28 @@
 // Language: java
 // Link: https://leetcode.com/problems/subarray-product-less-than-k/
 // Synced by: LinkCode
-// Date: 11/6/2026, 10:14:57 PM
+// Date: 11/23/2026, 12:09:10 AM
 // ======================================
 
 
 class Solution {
     public int numSubarrayProductLessThanK(int[] nums, int k) 
     {
-      if(k<=1)
-      {
-        return 0;
-      }
-      int product;
-      int count=0;
-      int n=nums.length;
-      for(int i=0;i<n;i++)
-      {
-        product=1;
-        for(int j=i;j>=0;j--)
+        //Optimised  Approach (Sliding Window)
+       int count=0;
+       int prod=1;
+       int l=0;
+       if(k<=1) return 0;
+       for(int r=0;r<nums.length;r++)
+       {
+        prod*=nums[r];
+        while(prod>=k)
         {
-            product*=nums[j];
-            if(product<k)
-            {
-                count++;
-            }
-            else
-            {
-                break;
-            }
+            prod/=nums[l];
+            l++;
         }
-      }
-      return count;
+        count+=r-l+1;
+       }
+        return count;    
     }
-
-   
 }
