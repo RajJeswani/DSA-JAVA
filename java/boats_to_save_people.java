@@ -3,19 +3,19 @@
 // Language: java
 // Link: https://leetcode.com/problems/boats-to-save-people/
 // Synced by: LinkCode
-// Date: 11/16/2026, 12:17:21 AM
+// Date: 11/22/2026, 2:39:43 PM
 // ======================================
 
 
 class Solution {
     public int numRescueBoats(int[] people, int limit)
      {
-        int left=0;
-        int n=people.length;
-        int right=n-1;
         int boats=0;
         Arrays.sort(people);
-        while(left<right)
+        int n=people.length;
+        int left=0;
+        int right=n-1;
+        while(left<=right)
         {
             if(people[left]+people[right]<=limit)
             {
@@ -23,16 +23,11 @@ class Solution {
                 left++;
                 right--;
             }
-            else if(people[left]+people[right]>limit)
+            else
             {
-                right--;
                 boats++;
+                right--;
             }
-            
-        }
-        if(left==right)
-        {
-            boats++;
         }
         return boats;
     }
